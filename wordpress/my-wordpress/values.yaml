@@ -18,3 +18,10 @@ db:
   user: "root"
   password: "P@ssw0rd34"
   name: "wordpress"
+
+# Configuration Ingress (L'accès externe)
+ingress:
+  enabled: true
+  className: "traefik"    # K3s utilise Traefik par défaut
+  # Remplacez 10.20.59.16 par l'IP de votre machine K3s (celle où vous faites le SSH)
+  host: "wordpress.10.20.59.16.nip.io"
