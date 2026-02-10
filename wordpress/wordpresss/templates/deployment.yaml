@@ -15,7 +15,7 @@ spec:
         app: {{ .Chart.Name }}
     spec:
       containers:
-        - name: wordpress
+        - name: wordpresss
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
@@ -31,3 +31,13 @@ spec:
               value: {{ .Values.db.password | quote }}
             - name: WORDPRESS_DB_NAME
               value: {{ .Values.db.name | quote }}
+              # 1. AJOUTER LE MONTAGE DANS LE CONTENEUR
+          volumeMounts:
+            - name: wordpress-content
+              mountPath: /var/www/html/wp-content
+
+      # 2. DÉCLARER LE VOLUME (Tout en bas, aligné avec "containers")
+      volumes:
+        - name: wordpress-content
+          persistentVolumeClaim:
+            claimName: pvc-{{ .Chart.Name }}-content

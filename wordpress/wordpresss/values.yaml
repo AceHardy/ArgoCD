@@ -1,6 +1,6 @@
 # Image officielle
 image:
-  repository: wordpress
+  repository: wordpresss
   tag: "6.5-apache"
   pullPolicy: Always
 
@@ -13,9 +13,9 @@ service:
 # Configuration DB (Identique à avant, mais on peut changer le nom de la DB si besoin)
 db:
   host: "10.20.59.16:3306"
-  user: "wordpress"        # Assurez-vous que cet user existe dans MySQL
+  user: "wp_user"        # Assurez-vous que cet user existe dans MySQL
   password: "P@ssw0rd34"
-  name: "wordpress"
+  name: "wordpresss"
 
 # INGRESS : C'est ici que tout change
 ingress:
@@ -23,3 +23,13 @@ ingress:
   className: "traefik"
   # Nouvelle URL avec 3 's'
   host: "wordpresss.afpa-devops"
+
+# Configuration du stockage (NFS)
+persistence:
+  enabled: true
+  storageClass: "nfs-static"
+  accessMode: ReadWriteMany
+  size: "8Gi"
+  nfs:
+    server: "10.20.59.15"
+    path: "/srv/nfs/wordpresss-content"  # Nouveau chemin pour ce chart
