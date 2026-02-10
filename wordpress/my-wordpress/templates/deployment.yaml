@@ -40,15 +40,20 @@ spec:
           {{- end }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
+          # --- Correction ici : Bloc ENV ---
           env:
             - name: WORDPRESS_DB_HOST
-              value: "10.20.59.16:3306" # Mettez l'adresse de votre DB
+              value: "10.20.59.16:3306" 
             - name: WORDPRESS_DB_PASSWORD
               value: "P@ssw0rd34"
-            ports:
+          # --- Fin du bloc ENV ---
+          
+          # "ports" doit être aligné avec "env" et "image", pas en dessous des tirets "-"
+          ports:
             - name: http
               containerPort: {{ .Values.service.port }}
               protocol: TCP
+          
           {{- with .Values.livenessProbe }}
           livenessProbe:
             {{- toYaml . | nindent 12 }}
