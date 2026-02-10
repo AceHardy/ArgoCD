@@ -43,10 +43,15 @@ spec:
           # --- Correction ici : Bloc ENV ---
           env:
             - name: WORDPRESS_DB_HOST
-              value: "10.20.59.16:3306" 
+              value: "10.20.59.16:3306"
+            # --- AJOUT OBLIGATOIRE ---
+            - name: WORDPRESS_DB_USER
+              value: "root"              # Ou le nom de votre user MySQL (souvent 'root' ou 'wordpress')
+            # -------------------------
             - name: WORDPRESS_DB_PASSWORD
               value: "P@ssw0rd34"
-          # --- Fin du bloc ENV ---
+            - name: WORDPRESS_DB_NAME    # (Recommandé d'ajouter ceci aussi par sécurité)
+              value: "wordpress"
           
           # "ports" doit être aligné avec "env" et "image", pas en dessous des tirets "-"
           ports:
