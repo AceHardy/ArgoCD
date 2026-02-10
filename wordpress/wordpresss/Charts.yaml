@@ -1,0 +1,6 @@
+apiVersion: v2
+name: wordpresss
+description: Nouveau chart Wordpress isolé
+type: application
+version: 0.1.0
+appVersion: "6.5-apache"

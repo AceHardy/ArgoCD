@@ -1,0 +1,25 @@
+# Image officielle
+image:
+  repository: wordpress
+  tag: "6.5-apache"
+  pullPolicy: Always
+
+replicaCount: 1
+
+service:
+  type: ClusterIP
+  port: 80
+
+# Configuration DB (Identique à avant, mais on peut changer le nom de la DB si besoin)
+db:
+  host: "10.20.59.16:3306"
+  user: "wordpress"        # Assurez-vous que cet user existe dans MySQL
+  password: "P@ssw0rd34"
+  name: "wordpress"
+
+# INGRESS : C'est ici que tout change
+ingress:
+  enabled: true
+  className: "traefik"
+  # Nouvelle URL avec 3 's'
+  host: "wordpresss.afpa-devops"
