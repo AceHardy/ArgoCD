@@ -1,6 +1,6 @@
 # Image officielle
 image:
-  repository: wordpresss
+  repository: wordpress
   tag: "6.5-apache"
   pullPolicy: Always
 
