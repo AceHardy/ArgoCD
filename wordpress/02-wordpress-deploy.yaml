@@ -1,22 +1,22 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: wordpress
-  namespace: wordpress
+  name: wordpresss
+  namespace: wordpresss
   labels:
-    app: wordpress
+    app: wordpresss
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: wordpress
+      app: wordpresss
   template:
     metadata:
       labels:
-        app: wordpress
+        app: wordpresss
     spec:
       containers:
-        - name: wordpress
+        - name: wordpresss
           image: wordpress:6.5-apache
           ports:
             - containerPort: 80
